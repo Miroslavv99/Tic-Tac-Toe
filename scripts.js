@@ -1,23 +1,55 @@
 const cells = document.querySelectorAll('.cell')
 const winerDisplay = document.querySelector('.winner')
+const resetButton = document.querySelector('.reset')
 
 
 function gameController () {
-    let gameBoard = [null, null, null, null, null, null, null, null, null]
-    let player = 'X'
+    let gameBoard = [null, null, null, null, null, null, null, null, null] 
+    let player = 'x'
 
-    cells.forEach(el => {
-        el.addEventListener('click', () => {
-            let index = parseInt(el.id)
+    
+    const handleCheck = () => {
+            cells.forEach(cell => {
+                const index = parseInt(cell.id)
+                cell.addEventListener('click', () => {
+                    if(gameBoard[index] === null) {
+                        gameBoard[index] = player
+                        player = player === 'x' ? 'o' : 'x'
+                        cell.textContent = player
+                        checkWinner()
+                    }
+                })
+            })
+        };
 
-            if(gameBoard[index] === null) {
-                gameBoard[index] = player
-                el.textContent = player
-                console.log(player)
+    const  checkWinner =  () => {
+            const winningCombinations = [
+                [0, 1, 2],
+                [3, 4, 5],
+                [6, 7, 8],
+                [0, 3, 6],
+                [1, 4, 7],
+                [2, 5, 8],
+                [0, 4, 8],
+                [2, 4, 6]
+            ];
+            
+            for(let combination of winningCombinations) {
+                const [a, b, c] = combination
 
-                player = player === 'X' ? 'O' : 'X'
+                if(gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[b] === gameBoard[c]) {
+                    winerDisplay.textContent = `Player ${player} Wins!`
+                    return
+                } 
             }
-        })
-    })
-}
+
+            if(!gameBoard.includes(null)) {
+                winerDisplay.textContent = 'Its Draw!'
+            }
+        }
+handleCheck()
+    
+    }
+
+    gameController()
 
