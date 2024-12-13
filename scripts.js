@@ -1,14 +1,15 @@
+//Getting page elements
 const cells = document.querySelectorAll('.cell')
 const winerDisplay = document.querySelector('.winner')
 const resetButton = document.querySelector('.reset')
 
-
+//Factory function with closure containing methods for the game
 function gameController () {
     let gameBoard = [null, null, null, null, null, null, null, null, null] 
     let player = 'x'
     let gameOver = false
 
-    
+//Method handles clicks on game board cells, updates the game state, and switches players by calling the winner check function.
     const handleCheck = () => {
             cells.forEach(cell => {
                 const index = parseInt(cell.id)
@@ -23,6 +24,7 @@ function gameController () {
             })
         };
 
+//Method adding logic for checking the winner   
     const  checkWinner =  () => {
             const winningCombinations = [
                 [0, 1, 2],
@@ -50,6 +52,7 @@ function gameController () {
             }
         }
 
+        //Adds an event handler to the reset button that clears the game board, resets the game state, and allows a new game to be started
     resetButton.addEventListener('click', () => {
         gameBoard = [null, null, null, null, null, null, null, null, null]
         cells.forEach(cell => {
