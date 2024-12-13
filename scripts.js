@@ -6,13 +6,14 @@ const resetButton = document.querySelector('.reset')
 function gameController () {
     let gameBoard = [null, null, null, null, null, null, null, null, null] 
     let player = 'x'
+    let gameOver = false
 
     
     const handleCheck = () => {
             cells.forEach(cell => {
                 const index = parseInt(cell.id)
                 cell.addEventListener('click', () => {
-                    if(gameBoard[index] === null) {
+                    if(gameBoard[index] === null && !gameOver) {
                         gameBoard[index] = player
                         player = player === 'x' ? 'o' : 'x'
                         cell.textContent = player
@@ -39,15 +40,27 @@ function gameController () {
 
                 if(gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[b] === gameBoard[c]) {
                     winerDisplay.textContent = `Player ${player} Wins!`
-                    return
+                    gameOver = true
                 } 
             }
 
             if(!gameBoard.includes(null)) {
                 winerDisplay.textContent = 'Its Draw!'
+                gameOver = true
             }
         }
-    handleCheck()
+
+    resetButton.addEventListener('click', () => {
+        gameBoard = [null, null, null, null, null, null, null, null, null]
+        cells.forEach(cell => {
+            cell.textContent = ''
+        })
+        player = 'x'
+        winerDisplay.textContent = 'Let`s Start The Game!'
+        gameOver = false
+    })
+
+     handleCheck()
     
     }
 
