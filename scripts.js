@@ -47,7 +47,7 @@ function gameController () {
                 winerDisplay.textContent = 'Its Draw!'
             }
         }
-handleCheck()
+    handleCheck()
     
     }
 
