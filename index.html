@@ -10,9 +10,22 @@
   <body>
     <div class="main-container">
       <div class="player-container">
-        <h1>Tic Tac Toe</h1>
-        <div>Player 1 - X</div>
-        <div>Player 2 - O</div>
+        <div class="logo">
+          <h1>Tic Tac Toe</h1>
+          <img src="/Tic logo.png" alt="logo" height="80px" width="80px" />
+        </div>
+        <div class="player-form">
+          <div>
+            <label for="player-one">Enter - X player name!</label>
+            <input type="text" id="player-x" minlength="3" />
+          </div>
+          <div>
+            <label for="player-two">Enter - O player name!</label>
+            <input type="text" id="player-o" minlength="3" />
+          </div>
+          <button id="change-player">Change Player</button>
+          <button class="reset">RESET</button>
+        </div>
       </div>
       <div class="game-container">
         <div class="winner"></div>
