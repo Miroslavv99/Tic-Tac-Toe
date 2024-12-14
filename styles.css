@@ -39,7 +39,7 @@
 }
 
 .game-display {
-    box-shadow: 5px 5px 10px grey;
+   box-shadow: 5px 5px 10px grey;
    display: grid;
    grid-template-columns: 1fr 1fr 1fr;
    grid-template-rows: 1fr 1fr 1fr;
@@ -97,7 +97,7 @@
     width: 400px;
     height: 30px;
     border: none;
-    background-color: rgb(203, 203, 203);
+    background-color: rgb(205, 203, 203);
     border-radius: 15px;
 }
 
